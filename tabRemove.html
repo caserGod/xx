@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.9.1.min.js"></script>
+</head>
+<body>
+		<select name="" id="sel">
+		<option value="0">请选择</option>
+		<option value="1">爸爸</option>
+		<option value="2">妈妈</option>
+		<option value="3">爷爷</option>
+		<option value="3">奶奶</option>
+	</select>
+
+	<script>
+	var sel=document.getElementById('sel');
+	console.log(sel.selectedIndex)
+	console.log(sel.options[1])
+	console.log(sel['options'])
+
+	sel.onchange=function(){
+		console.log(sel.selectedIndex)
+	}
+
+	var opt=document.createElement('option');
+	opt.innerHTML='我';
+
+	var opt1=document.createDocumentFragment();
+	opt1.appendChild(opt);
+	sel.appendChild(opt1);
+	</script>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>工作</th>
+				<th>工资</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+
+	<script>
+	var data=[
+		{'id':100,'name':'vn','work':'adc','count':10000},
+		{'id':200,'name':'皎月','work':'中单','count':10000},
+		{'id':300,'name':'德邦','work':'打野','count':10000}
+	];
+
+
+		var tbody=document.getElementsByTagName('tbody')[0];
+		for(var i=0;i<data.length;i++){
+			var tr=document.createElement('tr');
+			for(key in data[i]){
+				var td=document.createElement('td');
+				td.innerHTML=data[i][key];
+				if(key=='count'){
+					td.innerHTML="&yen;"+data[i]['count'];
+				}
+				
+				tr.appendChild(td);
+
+			}
+			tbody.appendChild(tr)
+		}
+
+		var trAll=tbody.getElementsByTagName('tr');
+		console.log(trAll.length)
+		for(var i=0;i<trAll.length;i++){
+			var td=document.createElement('td');
+			td.innerHTML='<input type="button" value="删除" class="btn">';
+			trAll[i].appendChild(td);
+		}
+
+		$('.btn').on('click',function(){
+			var i=$('.btn').index($(this));
+			$('tbody tr').eq(i).remove()
+			console.log($('tbody tr:eq(i)'))
+			console.log($('tbody tr').eq(i))
+		})
+
+
+		
+
+	</script>
+</body>
+</html>

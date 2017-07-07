@@ -1,0 +1,169 @@
+number,string,boolean,
+array,Data,Math,Regexp,
+function,object,error,Global,
+
+Mozilla开发者社区，掘金
+
+js四大特性：
+	运行在脚本引擎，内容排版html+css和脚本解析引擎介绍JS，nodejs独立安装的js引擎，
+	边解释边执行，弱类型，
+
+基本数据类型：number,string,boolean,null,underfined,
+引用类型：array,object,function,date,
+引用类型的操作会改变原来的对象，即使是经过相关复制得来的，
+
+
+var d=20;
+function fn(d){
+	console.log(d);
+	d++;
+	console.log(d);
+}
+fn(d);   此d和函数形参d不一样，此d是复制过来的变量，而形参d
+		只是一个随便的变量，
+console.log(d);
+
+函数的重载：
+	相同的函数名，不同的参数列表多个函数，在调用时，根据传入的
+	参数自动选择函数执行，
+<!--  -->
+function fn3(){
+	if(arguments.length==1){
+		return arguments[0]*arguments[0];
+	}else if(arguments.length==2){
+		return arguments[0]+arguments[1];
+	}
+}
+<!--  -->
+function fn5(){
+	var sum=0;
+	//return fn5()+arguments[arguments.length-1];
+	for(i in arguments){
+		sum+=arguments[i];
+	}
+	return sum;
+}
+
+console.log(fn5(1,2,3,4))
+
+<!--  -->
+var str='dyc like bapapa';
+var arr=str.split(' ');
+console.log(arr)
+for(i in arr){
+	var small=arr[i].charAt(0);
+	var big=arr[i].charAt(0).toUpperCase();
+	arr[i]=arr[i].replace(small,big);
+}
+var str1=arr.join(' ');
+console.log(str1);
+
+
+<!--  -->
+var arr=[1,33,23,32,133,232,56];
+for(var m=0;m<arr.length;m++){
+	for(var i=0;i<arr.length-m;i++){
+		if(arr[i]>arr[i+1]){
+			var big=arr[i];
+			arr[i]=arr[i+1];
+			arr[i+1]=big;
+		}
+	}
+}
+
+for(var m=0;m<arr.length;m++){
+	for(var i=0;i<arr.length-m;i++){
+		if(arr[i]<arr[i+1]){
+			var big=arr[i+1];
+			arr[i+1]=arr[i];
+			arr[i]=big;
+		}
+	}
+}
+
+
+callee是指针，指向拥有arguments对象的函数，
+
+error:
+SyntaxtError:语法错误，ReferenceError:引用错误，找不到变量和对象，
+TypeError:类型错误，使用方法错误，
+RangeError:范围错误，参数超出范围，
+EvalError:调用eval函数时错误，
+UrlError:地址错误，
+
+
+
+处理语法：
+	try{
+		正常代码段（可能出错的代码段）
+	}catch(err){
+		1.err记录错误的信息，
+		2.向调用者手动的抛出异常，
+	}finally{
+		不管出不出错，都会执行的代码，（常用来释放资源）
+	}
+
+
+
+
+
+2.0原型
+
+
+call:用一个对象强行调用一个本来无法调用的函数，打破原型链的限制，
+直接调用一个本开不可调用的函数或对象，
+
+
+function fn(age,work){
+console.log(this)
+console.log(age)
+console.log(work)
+console.log(this.name)
+}
+
+var obj={
+	name:'小小'
+}
+fn.call(obj,20,'前端')
+fn.call(obj)
+把fn中的this指向强行绑定为obj
+		window
+
+apply:用法一样，传参不同，是用于参数不固定时候，
+fn
+
+2.1自定义继承：
+	
+
+
+canvas:
+
+
+绘制文字：
+fillText(text,x,y)绘制实心文字，
+strokeText(text,x,y)绘制空心文字，
+font类似于css中，textAlign，textBaseline,
+shadowColor:
+shadowOffsetX:
+shadowOffsetY:
+
+arc(x,y,radius,stratAngle,endAngle,direction)
+
+
+
+
+getImageData:方法返回ImageData对象，该对象复制了画布指定区域的像素数据，
+并存储在ImageDate对象的data中，
+
+
+
+
+
+
+
+
+
+
+
+
+

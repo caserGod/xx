@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <style>
+*{padding:0;margin:0;}
+	ul{border:3px solid red;position:fixed;left:132px;top:53px;
+		width:200px;height:100px;list-style:inside;}
+
+</style>
+
+<ul><li id="l1">第一行</li><li>第二行</li><li>第三行</li>
+</ul>
+
+
+<script>
+//	appendChild()   removeChild()   innerBefore()	
+//	
+//	childNodes  nextSibling	previousSibling
+//		replaceChild()   nodeType  cloneNode()   parentNode	
+//	attributes  	getAttraibute()	 hasAttribute(ie8) 
+//removeAttribute()	setAttribute(,)
+//
+//	宽高左上*2
+//		
+//
+
+
+	var ul=document.getElementsByTagName('ul')[0];
+	var li=document.getElementById('l1')
+	console.log(ul.childNodes)
+	console.log(ul.childNodes[1].innerHTML)
+	console.log(ul.firstChild)
+	console.log(ul.firstChild===ul.childNodes[0])
+
+	console.log(ul.appendChild(ul.childNodes[1].cloneNode(true)))
+	console.log(ul.childNodes[1].nextSibling)
+	console.log(ul.childNodes[1].previousSibling)
+
+	console.log(ul.insertBefore(ul.childNodes[2].cloneNode(true),ul.childNodes[1]))
+	var first=document.createElement('li');
+	first.innerHTML='替换后的第一行';
+	ul.replaceChild(first,ul.childNodes[0])
+
+	console.log(ul.childNodes[0].parentNode)
+
+
+	for(i in ul.childNodes){
+		if(ul.childNodes[i].nodeType==1){
+			console.log(ul.childNodes[i].innerHTML)
+		}
+	}
+
+	ul.childNodes[0].setAttribute("title",'haha')
+	ul.childNodes[0].setAttribute("id",'haha')
+	console.log(ul.childNodes[0].attributes)
+	console.log(ul.childNodes[0].getAttribute('id'))
+	console.log(ul.childNodes[0].getAttribute('title'))
+	console.log(ul.childNodes[0].getAttribute('name'))
+	console.log(ul.childNodes[0].hasAttribute('id'))
+	console.log(ul.childNodes[0].removeAttribute('id'))
+	console.log(ul.childNodes[0].hasAttribute('id'))
+
+
+	console.log('横向滚动条'+pageXOffset)
+	console.log('纵向滚动条'+pageYOffset)
+	
+	console.log('元素左偏移'+ul.offsetLeft)
+	console.log('元素下偏移'+ul.offsetTop)
+	console.log('元素宽'+ul.offsetWidth)
+	console.log('元素高'+ul.offsetHeight)
+/*
+	console.log('元素可见区宽'+ul.clientWidth)
+	console.log('元素可见区高'+ul.clientHeight)
+
+	console.log('元素整体宽度'+ul.scrollWidth)
+	console.log('元素整体高度'+ul.scrollHeight)
+	console.log(ul.scrollLeft)
+	console.log(ul.scrollTop)
+
+	console.log('浏览器距屏幕左端'+screenLeft)
+	console.log('浏览器距屏幕上端'+screenTop)*/
+	console.log('浏览器距屏幕左端'+screenX)
+	console.log('浏览器距屏幕上端'+screenY)
+
+
+	
+
+	document.onclick=function(ev){
+		var ev=ev||event;
+		console.log(ev.clientX)
+		console.log(ev.clientY)
+		console.log(ev.offsetX)
+		console.log(ev.offsetY)
+		console.log(ev.screenX)
+		console.log(ev.screenY)
+	}
+
+
+
+
+
+
+	function getTree(parent){
+		console.log(parent.nodeType!=3?parent.nodeName:parent.nodeValue);
+		for(var i=0,len=parent.childNodes.length;i<len;i++){
+			getTree(parent.childNodes[i])
+		}
+	}
+	getTree(ul)
+</script>
+
+    </body>
+</html>

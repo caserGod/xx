@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+
+<script>
+function fn(age,work){
+console.log(this)
+console.log(age)
+console.log(work)
+console.log(this.name)
+}
+
+var obj={
+	name:'小小'
+}
+/*fn.call(obj,20,'前端')
+fn.call(obj)*/
+
+/*fn.apply(obj,[20,'大牛']);
+
+
+
+function fn01(){
+	console.log(arguments);
+	console.log(arguments instanceof Array);
+	var argArr=Array.prototype.slice.call(arguments);
+	console.log(argArr instanceof Array)
+}
+
+var arr=[1,2,3];
+var xx=arr.slice()
+console.log(xx)*/
+
+function Person(name){
+	this.sname=name;
+	Person.prototype.age=20;
+}
+var xq=new Person('小强');
+var obj2={
+	age:23,
+	introSelf:function(){
+		console.log(this.sname+this.age)
+	}
+}
+xq.__proto__=obj2;
+console.log(xq)
+
+
+/*
+function Student(name,age,gf){
+	this.name=name;
+	this.age=age;
+	this.gf=gf;
+}
+var father={
+	money:10000000,
+	car:'卡丁车'
+}
+Student.protetype=father;
+Student.protetype.play=function(){
+			console.log('我是'+this.name+','+this.age+','+'我爹有'+this.money)
+		}
+var xm=new Student('小明',28,8)
+console.log(xm)
+xm.play()
+console.log(xm.name)
+console.log(xm.gf)
+console.log(xm.prototype.money)
+console.log(xm.car)
+*/
+
+
+//扩展
+var arr2=[1,2,3,4];
+var what=arr2.indexOf(3)
+console.log(what)
+
+Array.prototype.getIndex=function(reg,from){
+	if(arguments.length==1){
+		for(var i=0;i<this.length;i++){
+			if(reg==this[i]){
+				return i;
+			}
+		}
+	}
+	if(arguments.length==2){
+		for(var i=from;i<this.length;i++){
+			if(reg==this[i]){
+				return i;
+			}
+		}
+	}
+}
+console.log(arr2.getIndex(3))
+
+
+
+var arr3=[10,2,9,2,10];
+
+Array.prototype.reRemove=function(arr){
+	var data=[];
+	for(var i=0;i<arr.length;i++){
+		if(data.indexOf(arr[i])==-1){
+			data.push(arr3[i])
+		}
+	}
+	console.log(data)
+}
+arr3.reRemove(arr3)
+
+
+
+
+arr04=[32,43,34,53,12,46];
+Array.prototype.sore=function(arr){
+	var sum=0;
+	var arr05=arr.sort(function(a,b){return a-b;});
+	arr05.pop();
+	arr05.shift();
+	console.log(arr05)
+	for(var i=0;i<arr05.length;i++){
+		sum+=arr05[i];
+	}
+	console.log(arr05.length)
+	return sum/arr05.length;
+}
+console.log(arr04.sore(arr04))
+
+
+
+
+function sum(base,bonus){
+	console.log(this.name+'总工资'+(base+bonus))
+}
+var lw={name:'嘻嘻'};
+var lz={name:'哈哈'};
+sum.call(lw,15000,2000)
+sum.apply(lz,[5000,2000])
+
+
+
+
+
+
+
+Function.prototype.bind=function(obj){
+	var that=this;
+	console.log(this)
+	var arg1=Array.prototype.slice.call(arguments,1);
+	return function(){
+		var arg2=Array.prototype.slice.call(arguments);
+		that.apply(obj,arg1.concat(arg2))
+	}
+}
+var newSum=sum.bind(lw);
+newSum(8000,6000)
+
+
+
+var str='var b=19'
+eval(str)
+console.log(b)
+
+function fn3(){
+	'use strict'
+	return !this
+}
+console.log(fn3())
+
+var Obj1={
+	name:'3',
+	age:'2',
+	intro:function(){
+		console.log(this.name+this.age)
+	}
+}
+
+var newObj1=Object.create(Obj1)
+console.log(newObj1)
+newObj1.score=99;
+newObj1.getScore=function(){
+	console.log(this.score)
+}
+console.log(newObj1)
+newObj1.getScore()
+
+
+
+
+
+
+Array.prototype.getSorce=function(){
+	Array.prototype.sort.call(arguments,function(a,b){retrun a-b})
+	Array.pop.call(arguments)
+	Array.shift.call(arguments)
+	return (eval(Array.join.call(arguments,"+"))/arguments.length).toFixed(2)
+}
+
+getSorce()
+
+</script>
+    </body>
+</html>

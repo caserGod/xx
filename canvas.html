@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id='canvas' width='400' height='400'></canvas>
+
+	<script>
+	var canvas=document.getElementById('canvas');
+	var canv=canvas.getContext('2d');
+	/*canv.beginPath();
+	canv.moveTo(0,100);
+	canv.lineTo(200,100);
+	canv.lineTo(50,200);
+	canv.lineTo(100,0);
+	canv.lineTo(150,200);
+	canv.lineTo(0,100);
+
+	canv.closePath();
+	canv.strokeStyle='red';
+	canv.lineWidth=10;
+	canv.stroke();*/
+
+
+/*	canv.strokeStyle="blue";
+	canv.font='28px Microsoft yahei';
+	canv.fillText('你好',20,20);
+	
+	//canv.textBaseline=''
+	canv.strokeStyle="red";
+	canv.textAlign='left';
+	canv.strokeText('放大会失帧',10,100)*/
+
+/*	canv.shadowBlur=10;
+	canv.shadowColor='#333';
+	canv.shadowOffsetX=15;
+	canv.shadowOffsetY=-5;
+	canv.fillStyle="#00f";
+	canv.font='40px 微软雅黑';
+	canv.fillText('嘻嘻',10,150);
+	canv.strokeStyle='red';
+	canv.font='30px 宋体';
+	canv.strokeText('放大会失帧',10,200);*/
+
+/*	for(var i=0;i<10;i++){
+		canv.beginPath();
+		canv.arc(i*20,i*20,(i+1)*6,0,Math.PI*2,true);
+		canv.closePath();
+		canv.fillStyle='rgba(32,45,203,'+(10-i)*0.1+')';
+		canv.fill();
+	}
+*/
+
+/*	var img=new Image();
+	img.src='1.png';
+	img.onload=function(){
+		canv.drawImage(img,0,0,150,110);
+		var imgData=canv.getImageData(0,0,150,110);
+		console.log(imgData);
+		var data=imgData.data;
+		for(var i=0;i<data.length;i+=4){
+			data[i]=255-data[i];
+			data[i+1]=255-data[i+1];
+			data[i+2]=255-data[i+2];
+			data[i+3]=255;
+		};
+		canv.putImageData(imgData,160,0);
+	};*/
+
+	canv.fillStyle='#ddd';
+	canv.fillRect(0,0,400,400);
+	var dx=1,dy=1;
+	var timer=srt.setIntervla(function(){
+
+	},30);
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

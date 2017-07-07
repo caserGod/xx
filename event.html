@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>dsdfads</p>
+	<ul>
+		<li>a</li>
+		<li>b</li>
+	</ul>
+
+	<textarea id="area" readonly style="resize:none;"></textarea>
+	<div id="btn">
+		<button>0</button>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button>
+		<button>5</button>
+		<button>6</button>
+		<button>7</button>
+		<button>8</button>
+		<button>9</button>
+		<button>+</button>
+		<button>-</button>
+		<button>*</button>
+		<button>/</button>
+		<button>=</button>
+		<button>C</button>
+	</div>
+	<script>
+/*	var p=document.getElementsByTagName('p');
+	var ul=document.getElementsByTagName('ul');
+	var li=document.getElementsByTagName('li');
+	var arrLi=Array.prototype.slice.call(li);
+	ul[0].addEventListener('click',function(ev){
+		var ev=ev||window.event;
+		var target=ev.target||ev.srcElement;
+		var index=arrLi.indexOf(target);
+		console.log(index)
+		for(var i=0;i<li.length;i++){
+			li[i].style.background='';
+		}
+		li[index].style.background='red';
+	})*/
+
+	var btn=document.getElementById('btn');
+	
+	btn.addEventListener('click',cale)
+
+	function cale(ev){
+		var ev=ev||window.event;
+		var target=ev.target||ev.srcElement;
+		var area=document.getElementById('area');
+		switch(target.innerHTML){
+			case'C':area.innerHTML='';break;
+			case'=':try{
+				if(area.innerHTML==''||area.innerHTML=='+'||area.innerHTML=='-'||
+					area.innerHTML=='*'||area.innerHTML=='/'){
+					area.innerHTML='';
+				}else{
+					area.innerHTML=eval(area.innerHTML);
+				}
+			}catch(err){
+				area.innerHTML=err.toString();
+			};break;
+			default:area.innerHTML+=target.innerHTML;
+		}
+	}
+
+	
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
